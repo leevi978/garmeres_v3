@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { TextOptions, defineField, defineType } from "sanity";
 import { IBAN, SWIFT } from "@/types/regex";
 
 export default defineType({
@@ -45,6 +45,13 @@ export default defineType({
                         if (value && /^[0-9]*$/.test(value)) return true;
                         return "Organisation number can only contain digits";
                     }),
+        }),
+        defineField({
+            name: "address",
+            title: "Address",
+            type: "text",
+            group: "general",
+            validation: (rule) => rule.required(),
         }),
         defineField({
             name: "vipps",
