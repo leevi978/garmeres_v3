@@ -13,8 +13,8 @@ export type QueryOptions = {
 function queryString(options: QueryOptions) {
     const { schemaType, slug, language, firstOnly, sort, fields } = options;
     return `*[_type == "${schemaType}"${
-        language ? ` && language == ${language}` : ""
-    }${slug ? ` && slug == "${slug}"` : ""}]${
+        language ? ` && language == "${language}"` : ""
+    }${slug ? ` && slug.current == "${slug}"` : ""}]${
         firstOnly ? `[0]` : sort ? ` | order(${sort})` : ""
     }{
         ...,

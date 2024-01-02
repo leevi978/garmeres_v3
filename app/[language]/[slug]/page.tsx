@@ -1,18 +1,27 @@
 import { generateStaticSlugParams } from "@/app/navigation/slug";
 import { Language } from "@/types/language";
+import { getDocument } from "@/services/sanity-service";
+import PortableText from "@/app/components/sanity/portable-text";
 
-export const generateStaticParams = () => generateStaticSlugParams("page");
+const schemaType = "page";
+
+export const generateStaticParams = () => generateStaticSlugParams(schemaType);
 
 export const dynamicParams = false;
 
-export default function Page({
+export default async function Page({
     params,
 }: {
     params: {
         language: Language;
         slug: string;
-        path: string;
     };
 }) {
-    return <>{params.slug}</>;
+    const document = await getDocument({ schemaType, ...params });
+    return (
+        <div>
+            <h1>{document.title}</h1>
+            <PortableText value={document.body} />
+        </div>
+    );
 }
