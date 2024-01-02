@@ -1,8 +1,15 @@
 export type Language = "en" | "se";
+
+export const languages: Language[] = ["en", "se"];
+
+export const languageNames: Translated<string> = {
+    en: "English",
+    se: "Davvisámegiella",
+};
+
 export type Translated<T> = {
     [LANGUAGE in Language]: T;
 };
-export const languages: Language[] = ["en", "se"];
 
 function hasKey<O extends Object>(obj: O, key: PropertyKey): key is keyof O {
     return key in obj;

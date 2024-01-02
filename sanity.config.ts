@@ -6,6 +6,7 @@ import { schema } from "./sanity/schema";
 import { documentInternationalization } from "@sanity/document-internationalization";
 import structure from "./sanity/desk/structure";
 import { translatedTypes } from "./sanity/desk/definition";
+import { languageNames, languages } from "./types/language";
 
 export default defineConfig({
     basePath: "/admin",
@@ -18,10 +19,12 @@ export default defineConfig({
         }),
         visionTool({ defaultApiVersion: apiVersion }),
         documentInternationalization({
-            supportedLanguages: [
-                { id: "en", title: "English" },
-                { id: "se", title: "Davvisámegiella" },
-            ],
+            supportedLanguages: languages.map((language) => {
+                return {
+                    id: language,
+                    title: languageNames[language],
+                };
+            }),
             schemaTypes: translatedTypes,
         }),
     ],
