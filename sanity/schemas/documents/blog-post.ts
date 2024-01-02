@@ -26,5 +26,11 @@ export default defineType({
             type: "portable-text",
             validation: (rule) => rule.required(),
         }),
+        defineField({
+            name: "language",
+            type: "string",
+            readOnly: true,
+            hidden: true,
+        }),
     ],
 });
