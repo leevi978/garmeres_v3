@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import slugField from "../fields/slug";
+import slugField, { isUnique } from "../fields/slug";
 
 export default defineType({
     name: "blog-post",
@@ -14,6 +14,7 @@ export default defineType({
         }),
         slugField({
             source: "title",
+            isUnique: isUnique("blog-post"),
         }),
         defineField({
             name: "thumbnail",
