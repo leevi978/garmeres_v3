@@ -28,4 +28,13 @@ export default defineConfig({
             schemaTypes: translatedTypes,
         }),
     ],
+    redirects: () => {
+        return [
+            {
+                source: "/",
+                destination: "/se",
+                permanent: true,
+            },
+        ];
+    },
 });

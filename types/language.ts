@@ -7,6 +7,8 @@ export const languageNames: Translated<string> = {
     se: "Davvisámegiella",
 };
 
+export const defaultLanguage: Language = "se";
+
 export type Translated<T> = {
     [LANGUAGE in Language]: T;
 };

@@ -2,6 +2,12 @@ import { ListItemOptions } from "./structure/tools/list-item";
 
 export const deskDefinition: DeskDefinition[] = [
     {
+        schemaType: "page",
+        title: "Pages",
+        translated: true,
+        singleton: false,
+    },
+    {
         schemaType: "blog-post",
         title: "Blog posts",
         translated: true,
