@@ -1,5 +1,6 @@
 import { Language, defaultLanguage } from "@/types/language";
 import { ReactNode } from "react";
+import PreviewWrapper from "../preview/preview-wrapper";
 import "@/app/globals.css";
 
 export default function RootLayout({
@@ -11,7 +12,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang={params?.language || defaultLanguage}>
-            <body>{children}</body>
+            <body>
+                <PreviewWrapper>{children}</PreviewWrapper>
+            </body>
         </html>
     );
 }

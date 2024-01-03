@@ -1,7 +1,12 @@
 import { generateStaticSlugParams } from "@/app/navigation/slug";
 import { Language } from "@/types/language";
-import { getDocument } from "@/services/sanity-service";
-import PortableText from "@/app/components/sanity/portable-text";
+import Component from "./component";
+import Preview from "./preview";
+import { query } from "@/sanity/lib/query";
+import { SanityDocument } from "next-sanity";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import LiveQuery from "next-sanity/preview/live-query";
+import { draftMode } from "next/headers";
 
 const schemaType = "blog-post";
 
@@ -17,11 +22,22 @@ export default async function Page({
         slug: string;
     };
 }) {
-    const document = await getDocument({ schemaType, ...params });
+    const { slug, language } = params;
+    const documentQuery = query({
+        schemaType,
+        slug,
+        language,
+        firstOnly: true,
+    });
+    const data = await sanityFetch<SanityDocument>({ query: documentQuery });
     return (
-        <div>
-            <h1>{document.title}</h1>
-            <PortableText value={document.body} />
-        </div>
+        <LiveQuery
+            enabled={draftMode().isEnabled}
+            query={documentQuery}
+            initialData={data}
+            as={Preview}
+        >
+            <Component document={data} />
+        </LiveQuery>
     );
 }

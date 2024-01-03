@@ -1,4 +1,4 @@
-import { TextOptions, defineField, defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 import { IBAN, SWIFT } from "@/types/regex";
 
 export default defineType({
