@@ -4,12 +4,11 @@
 
 Run these commands one by one
 
-```
-npm i -g @sanity/cli storyblok typescript
-sanity login
-storyblok login
+```shell
+npm i -g @sanity/cli typescript
 npm ci
 npm start
+sanity login
 sanity dataset import data/output.ndjson production --replace --replace-assets
 ```
 
