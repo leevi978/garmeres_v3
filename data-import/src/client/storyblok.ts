@@ -2,7 +2,7 @@ import { StoryblokBlogPost, StoryblokLang } from 'src/types/common';
 import { apiPlugin, storyblokInit } from '@storyblok/js';
 import { RichTextStoryblok } from 'src/types/storyblok';
 
-const token = process.env.STORYBLOK_TOKEN;
+const token = 'qq58HsFXzsQ2uFEeTzozkQtt';
 
 const { storyblokApi: Storyblok } = storyblokInit({
 	accessToken: token,
