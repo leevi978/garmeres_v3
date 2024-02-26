@@ -8,8 +8,6 @@ Run these commands one by one
 npm i -g sanity@latest typescript
 npm ci
 npm start
-sanity login
-sanity dataset import data/output.ndjson production --replace --replace-assets
 ```
 
 ## Generating types
