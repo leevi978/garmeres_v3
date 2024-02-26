@@ -5,7 +5,7 @@
 Run these commands one by one
 
 ```shell
-npm i -g @sanity/cli typescript
+npm i -g sanity@latest typescript
 npm ci
 npm start
 sanity login
