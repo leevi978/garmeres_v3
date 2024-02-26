@@ -27,7 +27,6 @@ async function getBlogPosts(
             content: {
                 ...story.content,
                 bodyHtml: story.content.body
-                    //?.map(transformBlok)
                     .map((doc) => Storyblok.richTextResolver.render(doc.text))
                     .join('\n\n'),
             },
