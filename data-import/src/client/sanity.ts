@@ -1,6 +1,9 @@
 import { LocalAsset, UploadedAsset } from 'src/types/common';
 import { createClient } from '@sanity/client';
 import fs from 'fs';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const client = createClient({
     projectId: process.env.SANITY_PROJECT_ID,
@@ -53,4 +56,52 @@ export async function uploadAssets(assets: LocalAsset[]) {
                 })
         )
     );
+}
+
+export async function deleteDocumentsOfType(documentType: string) {
+    try {
+        const translations = await client.fetch(
+            `*[_type == "translation.metadata" && "${documentType}" in schemaTypes]{_id}`
+        );
+        await Promise.all(
+            translations.map(async (t: any) => {
+                return client
+                    .delete(t._id)
+                    .then((_) => {
+                        console.log(
+                            `Deleted translation document with ID: ${t._id}`
+                        );
+                    })
+                    .catch((error) => {
+                        console.error(
+                            'Error deleting translation document:',
+                            error.message
+                        );
+                    });
+            })
+        );
+        // Fetch all documents of the specified type
+        const documents = await client.fetch(
+            `*[_type == "${documentType}"]{_id}`
+        );
+
+        await Promise.all(
+            documents.map((doc: any) => {
+                return client
+                    .delete(doc._id)
+                    .then((_) => {
+                        console.log(`Deleted document with ID: ${doc._id}`);
+                    })
+                    .catch((error) => {
+                        console.error(
+                            'Error deleting document:',
+                            error.message
+                        );
+                    });
+            })
+        );
+        console.log(`Deleted all documents of type ${documentType}`);
+    } catch (error) {
+        console.error('Error deleting documents:', error.message);
+    }
 }

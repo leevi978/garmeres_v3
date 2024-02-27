@@ -3,6 +3,8 @@ export type SanityLang = 'en' | 'se';
 export type SanityBlogPost = {
     _id?: string;
     _type: 'blog-post';
+    _createdAt: string;
+    _updatedAt: string;
     title: string;
     slug: SanitySlug;
     thumbnail?: SanityPortableImage;

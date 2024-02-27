@@ -6,7 +6,6 @@ import {
 } from './client/storyblok';
 import { transformTranslatedBlogPost, uploadedAssetMap } from './transform';
 import { mkdir, writeJsonFile, writeNdjsonFile } from './utils';
-require('dotenv').config();
 
 async function run() {
     const stories = await getTranslatedBlogPosts();

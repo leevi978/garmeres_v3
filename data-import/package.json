@@ -6,6 +6,7 @@
     "scripts": {
         "start": "npm run build && node dist/index.js && sanity dataset import ./data/output.ndjson --replace --replace-assets",
         "build": "tsc",
+        "delete": "npm run build && node dist/delete.js",
         "generate-sb-types": "storyblok pull-components --space 108732 -f storyblok -p storyblok && storyblok-generate-ts source=./components.storyblok.json target=./src/types/storyblok"
     },
     "author": "Levi Sørum",

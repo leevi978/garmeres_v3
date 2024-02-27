@@ -49,6 +49,8 @@ function transformBlogPost(story: StoryblokBlogPost): SanityBlogPost {
         title: transformTitle(story),
         thumbnail: transformThumbnail(story),
         body: transformBody(story),
+        _createdAt: story.first_published_at,
+        _updatedAt: story.published_at,
     };
 }
 
