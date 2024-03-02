@@ -34,6 +34,13 @@ export default defineType({
       type: "portable-image",
     }),
     defineField({
+      name: "menuIndex",
+      title: "Menu index",
+      description:
+        "Pages with a lower menu index will appear first in the main menu.",
+      type: "number",
+    }),
+    defineField({
       name: "language",
       type: "string",
       readOnly: true,

@@ -20,7 +20,6 @@ export default function PortableImage({
 }: {
   value: PortableImageProps;
 }) {
-  console.log(value);
   return (
     <Image
       src={urlForImage(value).width(600).url()}

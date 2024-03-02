@@ -38,7 +38,6 @@ export default function Component({
 }: {
   document: BlogPostDocument;
 }) {
-  console.log(document);
   return (
     <PageTextContainer>
       <HeaderMargin />

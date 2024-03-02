@@ -1,15 +1,18 @@
-import { Language, defaultLanguage, languageNames } from "@/types/language";
+import { Language, defaultLanguage } from "@/types/language";
 import { ReactNode } from "react";
 import PreviewWrapper from "../preview/preview-wrapper";
 import "@/app/globals.css";
 import Header from "./header";
 import Footer from "./footer";
+import { MenuItem } from "@/types/sanity-types";
 
 export default function RootLayout({
   children,
+  menuItems,
   params,
 }: {
   children: ReactNode;
+  menuItems: MenuItem[];
   params?: { language?: Language };
 }) {
   const language = params?.language || defaultLanguage;
@@ -18,7 +21,7 @@ export default function RootLayout({
       <body>
         <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-full bg-zinc-900 -z-20" />
         <PreviewWrapper>
-          <Header language={language} />
+          <Header language={language} menuItems={menuItems} />
           <main className="flex flex-col min-h-screen max-w-screen">
             {children}
           </main>

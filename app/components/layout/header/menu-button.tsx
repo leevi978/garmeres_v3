@@ -1,16 +1,24 @@
 "use client";
 import { Button, ButtonProps } from "react-aria-components";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { MdOutlineClose } from "react-icons/md";
 
 export default function MenuButton(
-  props: ButtonProps & React.RefAttributes<HTMLButtonElement>
+  props: ButtonProps &
+    React.RefAttributes<HTMLButtonElement> & { isOpen?: boolean }
 ) {
   return (
     <Button
       {...props}
-      className="text-white my-auto focus:outline-white focus:outline-double"
+      className={`${
+        props.isOpen ? "text-black" : "text-white"
+      } my-4 focus:outline-white focus:outline-double`}
     >
-      <RxHamburgerMenu size={35} />
+      {props.isOpen ? (
+        <MdOutlineClose size={35} />
+      ) : (
+        <RxHamburgerMenu size={35} />
+      )}
     </Button>
   );
 }

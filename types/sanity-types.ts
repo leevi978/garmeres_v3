@@ -46,6 +46,11 @@ export type ResolvableLink = {
   _type: ResolvableType;
 };
 
+export type MenuItem = {
+  name: string;
+  path: string;
+};
+
 export type CallToAction = {
   _type: "call-to-action";
   title: string;
