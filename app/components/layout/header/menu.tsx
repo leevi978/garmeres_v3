@@ -46,7 +46,7 @@ export default function Menu({
       </Fade>
       <MenuButton onPress={handleChange} isOpen={isOpen} />
       <Slide direction="left" in={isOpen} container={containerRef.current}>
-        <nav className="fixed flex flex-col justify-between top-0 right-0 bottom-0 rounded-sm max-h-screen w-full sm:w-[380px] max-w-screen bg-zinc-300  shadow-xl items-center">
+        <nav className="fixed flex flex-col justify-between top-0 right-0 bottom-0 rounded-sm max-h-screen w-full sm:w-[380px] max-w-screen bg-zinc-200  shadow-xl items-center">
           <div className="relative flex flex-row py-3 px-4 w-full">
             <MenuButton onPress={handleChange} isOpen={isOpen} />
           </div>
