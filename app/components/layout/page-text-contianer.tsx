@@ -6,7 +6,7 @@ export default function PageTextContainer({
   children: ReactNode;
 }) {
   return (
-    <div className="flex flex-col max-w-[1024px] w-full mx-auto px-8 py-6 bg-white flex-grow h-full">
+    <div className="flex flex-col max-w-[1024px] w-full mx-auto px-8 py-16 bg-white flex-grow h-full">
       {children}
     </div>
   );

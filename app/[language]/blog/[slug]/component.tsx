@@ -15,12 +15,15 @@ function urlForImage(image: { _key: string; asset: SanityReference }) {
 
 function BlogPostThumbnail(props: PortableImage) {
   return (
-    <div className="flex flex-col mx-auto my-8 gap-4">
+    <div className="flex flex-col mx-auto mb-8 gap-8">
       <Image
-        src={urlForImage(props).withOptions({}).url()}
+        className="max-h-[512px] object-contain"
+        src={urlForImage(props)
+          .withOptions({ maxHeight: 512, maxWidth: 720, auto: "format" })
+          .url()}
         alt={props.alt}
-        width={380}
-        height={380}
+        width={720}
+        height={512}
         quality={70}
       />
       {props.attribution ? (
