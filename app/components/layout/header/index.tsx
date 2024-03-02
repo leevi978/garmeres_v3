@@ -9,7 +9,7 @@ export function HeaderMargin() {
 export default function Header({ language }: { language: Language }) {
   return (
     <header className="absolute top-0 left-0 right-0 z-10 w-screen bg-zinc-800 flex flex-row justify-between shadow-lg px-8 py-4">
-      <Logo />
+      <Logo language={language} />
       <MenuButton />
     </header>
   );
