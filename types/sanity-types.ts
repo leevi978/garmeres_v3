@@ -2,7 +2,6 @@ import { SanityDocument } from "next-sanity";
 import { Language } from "./language";
 import { PortableTextBlock } from "sanity";
 import { SanityReference } from "next-sanity";
-import { PortableImageProps } from "@/app/components/sanity/portable-image";
 
 export type Document = SanityDocument & {
   language: Language;
@@ -19,6 +18,10 @@ export type PageDocument = Document & {
   featured: Featured;
   backgroundImage: PortableImage;
   _type: "page";
+};
+
+export type BlogPostDocument = Document & {
+  thumbnail: PortableImage;
 };
 
 export type PortableImage = {
