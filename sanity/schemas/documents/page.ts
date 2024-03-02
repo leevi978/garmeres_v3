@@ -27,7 +27,6 @@ export default defineType({
       name: "body",
       title: "Body",
       type: "portable-text",
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "backgroundImage",

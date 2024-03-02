@@ -16,14 +16,13 @@ export default function RootLayout({
   return (
     <html lang={language}>
       <body>
+        <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-full bg-zinc-900 -z-20" />
         <PreviewWrapper>
-          <div className="flex flex-col justify-between min-h-screen">
-            <Header language={language} />
-            <main className="flex flex-col flex-grow bg-zinc-900">
-              {children}
-            </main>
-            <Footer language={language} />
-          </div>
+          <Header language={language} />
+          <main className="flex flex-col min-h-screen max-w-screen">
+            {children}
+          </main>
+          <Footer language={language} />
         </PreviewWrapper>
       </body>
     </html>
