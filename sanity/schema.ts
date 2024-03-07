@@ -6,6 +6,7 @@ import page from "./schemas/documents/page";
 import contact from "./schemas/documents/contact";
 import featured from "./schemas/fields/featured";
 import callToAction from "./schemas/fields/call-to-action";
+import blogBrowser from "./schemas/blog-browser";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -16,5 +17,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     contact,
     featured,
     callToAction,
+    blogBrowser,
   ],
 };

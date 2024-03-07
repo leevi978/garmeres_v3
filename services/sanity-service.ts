@@ -4,8 +4,11 @@ import { Language, toTranslated } from "@/types/language";
 import { SanityDocument } from "next-sanity";
 import { PortableTextBlock } from "sanity";
 import { Translated } from "@/types/language";
-import { MenuItem, PageDocument, ResolvableLink } from "@/types/sanity-types";
-import { cache } from "react";
+import {
+  BlogPostDocument,
+  PageDocument,
+  ResolvableLink,
+} from "@/types/sanity-types";
 
 type Document = SanityDocument & {
   language: Language;
@@ -72,4 +75,39 @@ export async function getTranslatedDocument(
 ): Promise<Translated<Document>> {
   const data = await client.fetch<TranslatedDocument>(translationQuery(_id));
   return toTranslated<Document>(data._translations);
+}
+
+type BlogPostQueryOptions = {
+  perPage?: number;
+  page?: number;
+  language?: Language;
+};
+
+function paginateArray<T>(
+  array: T[],
+  pageSize: number,
+  pageNumber: number
+): T[] {
+  return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+}
+
+export async function getBlogPosts(options?: BlogPostQueryOptions) {
+  const blogPosts = await client.fetch<BlogPostDocument[]>(
+    query({
+      schemaType: "blog-post",
+      language: options?.language,
+      sort: "_createdAt desc",
+    })
+  );
+  let hasMore = false;
+  if (options?.perPage) {
+    const maxPages = Math.ceil(blogPosts.length / options.perPage);
+    hasMore = (options?.page || 1) < maxPages;
+  }
+  return {
+    blogPosts: options?.perPage
+      ? paginateArray(blogPosts, options.perPage, options.page || 1)
+      : blogPosts,
+    hasMore,
+  };
 }
