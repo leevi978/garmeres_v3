@@ -39,8 +39,8 @@ export default function BlogBrowserInteractive({
   }, [page]);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-16">
-      <div className="grid grid-cols-2 gap-4">
+    <div className="flex flex-col justify-center items-center w-full">
+      <div className="grid grid-cols-2 gap-16 w-full">
         {blogPosts.map((blogPost) => (
           <BlogPostCard
             key={blogPost._id}
