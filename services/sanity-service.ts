@@ -111,3 +111,20 @@ export async function getBlogPosts(options?: BlogPostQueryOptions) {
 		hasMore,
 	};
 }
+
+export function getPageBySlug({
+	slug,
+	language,
+}: {
+	slug: string;
+	language: Language;
+}) {
+	return client.fetch<PageDocument>(
+		query({
+			schemaType: 'page',
+			firstOnly: true,
+			language,
+			slug,
+		})
+	);
+}
