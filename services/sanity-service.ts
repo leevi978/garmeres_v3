@@ -1,5 +1,5 @@
 import { client } from '@/sanity/lib/client';
-import { query, translationQuery } from '@/sanity/lib/query';
+import { query, translationQuery, translationsQuery } from '@/sanity/lib/query';
 import { Language, toTranslated } from '@/types/language';
 import { SanityDocument } from 'next-sanity';
 import { PortableTextBlock } from 'sanity';
@@ -9,6 +9,7 @@ import {
 	ContactDocument,
 	PageDocument,
 	ResolvableLink,
+	TranslatedDocument,
 } from '@/types/sanity-types';
 
 type Document = SanityDocument & {
@@ -16,10 +17,6 @@ type Document = SanityDocument & {
 	slug: string;
 	body: PortableTextBlock[];
 	title: string;
-};
-
-type TranslatedDocument = SanityDocument & {
-	_translations: Document[];
 };
 
 export function resolveLink(link: ResolvableLink) {
@@ -74,7 +71,9 @@ export async function getDocument({
 export async function getTranslatedDocument(
 	_id: string
 ): Promise<Translated<Document>> {
-	const data = await client.fetch<TranslatedDocument>(translationQuery(_id));
+	const data = await client.fetch<TranslatedDocument<Document>>(
+		translationQuery(_id)
+	);
 	return toTranslated<Document>(data._translations);
 }
 
@@ -135,6 +134,24 @@ export function getContactInfo() {
 		query({
 			schemaType: 'contact',
 			firstOnly: true,
+		})
+	);
+}
+
+export function getTranslations<T extends PageDocument | BlogPostDocument>({
+	schemaType,
+	slug,
+	language,
+}: {
+	schemaType: string;
+	slug: string;
+	language: Language;
+}) {
+	return client.fetch<TranslatedDocument<T>>(
+		translationsQuery({
+			schemaType,
+			slug,
+			language,
 		})
 	);
 }

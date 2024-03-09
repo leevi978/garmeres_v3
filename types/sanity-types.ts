@@ -10,8 +10,8 @@ export type Document = SanityDocument & {
 	title: string;
 };
 
-export type TranslatedDocument = SanityDocument & {
-	_translations: Document[];
+export type TranslatedDocument<T extends Document> = T & {
+	_translations: T[];
 };
 
 export type PageDocument = Document & {
@@ -61,6 +61,7 @@ export type ResolvableLink = {
 export type MenuItem = {
 	name: string;
 	path: string;
+	languageIcon?: boolean;
 };
 
 export type CallToAction = {
