@@ -18,7 +18,7 @@ export default function BackgroundAttribution({
 			getPageBySlug({ language, slug }).then((page) => {
 				if (page?.backgroundImage?.attribution) {
 					setAttribution(page.backgroundImage.attribution);
-				}
+				} else setAttribution(undefined);
 			});
 		}
 	}, [pathname]);
