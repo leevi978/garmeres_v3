@@ -1,65 +1,77 @@
-import { SanityDocument } from "next-sanity";
-import { Language } from "./language";
-import { PortableTextBlock } from "sanity";
-import { SanityReference } from "next-sanity";
+import { SanityDocument } from 'next-sanity';
+import { Language } from './language';
+import { PortableTextBlock } from 'sanity';
+import { SanityReference } from 'next-sanity';
 
 export type Document = SanityDocument & {
-  language: Language;
-  slug: string;
-  body: PortableTextBlock[];
-  title: string;
+	language: Language;
+	slug: string;
+	body: PortableTextBlock[];
+	title: string;
 };
 
 export type TranslatedDocument = SanityDocument & {
-  _translations: Document[];
+	_translations: Document[];
 };
 
 export type PageDocument = Document & {
-  featured: Featured;
-  backgroundImage: PortableImage;
-  _type: "page";
+	featured: Featured;
+	backgroundImage: PortableImage;
+	_type: 'page';
 };
 
 export type BlogPostDocument = Document & {
-  thumbnail: PortableImage;
+	thumbnail: PortableImage;
+};
+
+export type ContactDocument = Document & {
+	address: string;
+	bankAccount: string;
+	email: string;
+	facebook: string;
+	iban: string;
+	instagram: string;
+	orgNumber: string;
+	swift: string;
+	vipps: string;
 };
 
 export type PortableImage = {
-  _key: string;
-  alt: string;
-  asset: SanityReference;
-  attribution?: string;
-  title?: string;
-  caption?: string;
+	_key: string;
+	alt: string;
+	asset: SanityReference;
+	attribution?: string;
+	title?: string;
+	caption?: string;
 };
 
-export type ResolvableType = "page" | "blog-post";
+export type ResolvableType = 'page' | 'blog-post';
 
 export type Slug = {
-  current: string;
-  _type: "slug";
+	current: string;
+	_type: 'slug';
 };
 
 export type ResolvableLink = {
-  language: Language;
-  slug: Slug;
-  _type: ResolvableType;
+	language: Language;
+	slug: Slug;
+	_type: ResolvableType;
 };
 
 export type MenuItem = {
-  name: string;
-  path: string;
+	name: string;
+	path: string;
 };
 
 export type CallToAction = {
-  _type: "call-to-action";
-  title: string;
-  link: ResolvableLink;
+	_type: 'call-to-action';
+	title: string;
+	link: ResolvableLink;
 };
 
 export type Featured = {
-  _type: "featured";
-  title: string;
-  text: string;
-  callToAction: CallToAction;
+	_type: 'featured';
+	title: string;
+	text: string;
+	callToAction: CallToAction;
 };

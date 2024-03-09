@@ -6,6 +6,7 @@ import { PortableTextBlock } from 'sanity';
 import { Translated } from '@/types/language';
 import {
 	BlogPostDocument,
+	ContactDocument,
 	PageDocument,
 	ResolvableLink,
 } from '@/types/sanity-types';
@@ -125,6 +126,15 @@ export function getPageBySlug({
 			firstOnly: true,
 			language,
 			slug,
+		})
+	);
+}
+
+export function getContactInfo() {
+	return client.fetch<ContactDocument>(
+		query({
+			schemaType: 'contact',
+			firstOnly: true,
 		})
 	);
 }
