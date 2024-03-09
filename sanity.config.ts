@@ -1,6 +1,6 @@
 import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
-import { deskTool } from 'sanity/desk';
+import { structureTool } from 'sanity/structure';
 import { apiVersion, dataset, projectId } from './sanity/env';
 import { schema } from './sanity/schema';
 import { documentInternationalization } from '@sanity/document-internationalization';
@@ -37,7 +37,7 @@ export default defineConfig({
 				}),
 	},
 	plugins: [
-		deskTool({
+		structureTool({
 			structure,
 			defaultDocumentNode: (S) => S.document(),
 		}),

@@ -1,6 +1,4 @@
-import { SanityDocument } from 'next-sanity';
 import { ListItemOptions } from './structure/tools/list-item';
-import { Language } from '@/types/language';
 
 export const deskDefinition: DeskDefinition[] = [
 	{

@@ -2,7 +2,7 @@ import {
 	ComponentViewBuilder,
 	FormViewBuilder,
 	StructureBuilder,
-} from 'sanity/desk';
+} from 'sanity/structure';
 import {
 	Language,
 	defaultLanguage,
