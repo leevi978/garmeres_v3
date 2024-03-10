@@ -1,5 +1,5 @@
-import { permanentRedirect } from "next/navigation";
+import { permanentRedirect } from 'next/navigation';
 
-export default function Page() {
-  return permanentRedirect("/se/ruoktot");
-}
+const redirectHome = () => permanentRedirect('/se/ruoktot');
+
+export default redirectHome;
