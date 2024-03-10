@@ -6,6 +6,7 @@ import imageUrlBuilder from '@sanity/image-url';
 import { PortableImageProps } from '../portable-image';
 import { PortableTextBlock } from 'sanity';
 import Link from 'next/link';
+import { getDateString } from '@/utils/date-utils';
 
 export default function BlogPostCard({
 	blogPost,
@@ -19,7 +20,10 @@ export default function BlogPostCard({
 	function urlForImage(image: PortableImageProps) {
 		return imgUrlBuilder.image(image);
 	}
-	const { title, thumbnail, body, slug } = blogPost;
+	const { title, thumbnail, body, slug, _createdAt } = blogPost;
+
+	const date = new Date(_createdAt);
+
 	return (
 		<Link
 			href={blogPostHref((slug as any).current, language)}
@@ -39,6 +43,7 @@ export default function BlogPostCard({
 			/>
 			<div className='flex flex-col gap-4'>
 				<h3>{title}</h3>
+				<p>{getDateString(_createdAt)}</p>
 				<p>{portableTextSummary(body, 150)}</p>
 			</div>
 		</Link>
