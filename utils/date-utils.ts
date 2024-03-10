@@ -4,3 +4,15 @@ export function getDateString(datetimeIso: string) {
 		.toString()
 		.padStart(2, '0')}.${date.getFullYear()}`;
 }
+
+export function getTimeString(datetimeIso: string) {
+	const date = new Date(datetimeIso);
+	return `${date.getHours().toString().padStart(2, '0')}:${date
+		.getMinutes()
+		.toString()
+		.padStart(2, '0')}`;
+}
+
+export function getDatetimeString(datetimeIso: string) {
+	return `${getDateString(datetimeIso)} - ${getTimeString(datetimeIso)}`;
+}

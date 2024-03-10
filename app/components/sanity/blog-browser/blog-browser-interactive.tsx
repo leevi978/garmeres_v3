@@ -35,7 +35,7 @@ export default function BlogBrowserInteractive({
 	}, [page, perPage, language]);
 
 	return (
-		<div className='flex flex-col justify-center items-center w-full'>
+		<div className='flex flex-col justify-center items-center w-full my-8'>
 			<div className='grid grid-cols-2 gap-16 w-full'>
 				{blogPosts.map((blogPost) => (
 					<BlogPostCard

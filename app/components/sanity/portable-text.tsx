@@ -6,6 +6,7 @@ import {
 import PortableImage, { PortableImageProps } from './portable-image';
 import { PortableTextBlock } from 'sanity';
 import BlogBrowser from './blog-browser';
+import EventsBrowser from './events-browser';
 import { Language } from '@/types/language';
 
 export default function PortableText({
@@ -24,6 +25,11 @@ export default function PortableText({
 				props: PortableTextTypeComponentProps<{ language: Language }>
 			) => {
 				return <BlogBrowser {...props.value} />;
+			},
+			'events-browser': (
+				props: PortableTextTypeComponentProps<{ language: Language }>
+			) => {
+				return <EventsBrowser {...props.value} />;
 			},
 		},
 		list: {
