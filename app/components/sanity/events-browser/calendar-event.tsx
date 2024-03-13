@@ -22,7 +22,7 @@ export default function CalendarEvent(
         className="flex flex-row py-2 px-4"
       >
         <DateIcon language={props.language} datetimeIso={props.start} />
-        <div className="flex flex-col flex-grow">
+        <div className="flex flex-col flex-grow gap-1">
           <h2>{props.name}</h2>
           <div>
             <TimeString {...props} />

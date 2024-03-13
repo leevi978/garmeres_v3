@@ -6,7 +6,7 @@ export default function Logo({ language }: { language: Language }) {
   return (
     <Link href={`/${language}`} className="flex flex-row gap-4">
       <Image
-        className="rounded flex my-auto"
+        className="rounded flex my-auto sm:w-[70px] w-[55px]"
         src="/garmeres-logo-small.png"
         alt=""
         width={70}
