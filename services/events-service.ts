@@ -1,4 +1,4 @@
-const url = "https://events.api.garmeres.com";
+const url = "https://events.api.queerhangout.no";
 
 export type CalendarEvent = {
   uid: string;
@@ -24,7 +24,7 @@ export type CalendarPage = {
 };
 
 export async function getCalendarPage(page?: number) {
-  const res = await fetch(`${url}${page ? `?page=${page}` : ""}`);
+  const res = await fetch(`${url}${page ? `/pages/${page}.json` : ""}`);
   const body = await res.json();
   const calendarPage: CalendarPage = body;
   return calendarPage;
