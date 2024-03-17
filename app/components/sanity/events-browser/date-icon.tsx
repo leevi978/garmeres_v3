@@ -10,7 +10,7 @@ export default function DateIcon({
   const date = new Date(datetimeIso);
   return (
     <div
-      className="flex flex-col justify-center items-center border-l-2 border-fuchsia-400 mr-auto mb-auto w-16 h-12"
+      className="flex flex-col justify-center items-center border-l-2 border-fuchsia-400 mr-auto w-16 h-full"
       aria-label={`${date.getDate()}. ${months[date.getMonth()][language]}`}
     >
       <span aria-hidden="true">{date.getDate()}</span>

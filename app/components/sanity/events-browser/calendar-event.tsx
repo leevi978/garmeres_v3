@@ -15,7 +15,7 @@ export default function CalendarEvent(
   props: CalendarEvent & { language: Language }
 ) {
   return (
-    <Accordion>
+    <Accordion className="w-full">
       <AccordionSummary
         id="panel-header"
         aria-controls="panel-content"
@@ -23,7 +23,7 @@ export default function CalendarEvent(
       >
         <DateIcon language={props.language} datetimeIso={props.start} />
         <div className="flex flex-col flex-grow gap-1">
-          <h2>{props.name}</h2>
+          <h3 className="text-base">{props.name}</h3>
           <div>
             <TimeString {...props} />
             <DurationString {...props} />
@@ -58,11 +58,13 @@ function TimeString({
   const time = getEventTimeString(start, end, duration);
   return time != null ? (
     <div
-      className="flex flex-row items-center gap-2"
+      className="flex flex-row items-center gap-1"
       aria-label={`${translations.time[language]}: ${time}`}
     >
-      <IoTimeOutline size={18} aria-hidden="true" />
-      <span aria-hidden="true">{time}</span>
+      <IoTimeOutline size={16} aria-hidden="true" />
+      <span className="text-sm mt-auto" aria-hidden="true">
+        {time}
+      </span>
     </div>
   ) : null;
 }
@@ -77,11 +79,13 @@ function DurationString({
   const durationString = getDurationString(duration, language);
   return durationString != null ? (
     <div
-      className="flex flex-row items-center gap-2"
+      className="flex flex-row items-center gap-1"
       aria-label={`${translations.duration[language]}: ${durationString}`}
     >
-      <IoTimerOutline size={18} aria-hidden="true" />
-      <span aria-hidden="true">{durationString}</span>
+      <IoTimerOutline size={16} aria-hidden="true" />
+      <span className="text-sm mt-auto" aria-hidden="true">
+        {durationString}
+      </span>
     </div>
   ) : null;
 }
@@ -95,11 +99,13 @@ function LocationString({
 }) {
   return location != null && location !== "" ? (
     <div
-      className="flex flex-row items-center gap-2"
+      className="flex flex-row items-center gap-1"
       aria-label={`${translations.location[language]}: ${location}`}
     >
-      <IoLocationOutline size={20} aria-hidden="true" />
-      <span aria-hidden="true">{location}</span>
+      <IoLocationOutline size={18} aria-hidden="true" />
+      <span className="text-sm" aria-hidden="true">
+        {location}
+      </span>
     </div>
   ) : null;
 }
