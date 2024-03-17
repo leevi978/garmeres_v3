@@ -15,9 +15,9 @@ export default function MenuButton(
       } my-4 focus:outline-white focus:outline-double`}
     >
       {props.isOpen ? (
-        <MdOutlineClose size={35} />
+        <MdOutlineClose size={30} />
       ) : (
-        <RxHamburgerMenu size={35} />
+        <RxHamburgerMenu size={30} />
       )}
     </Button>
   );
