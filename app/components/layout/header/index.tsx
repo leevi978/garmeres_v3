@@ -18,7 +18,7 @@ export default function Header({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   return (
-    <header className="absolute top-0 left-0 right-0 z-10 w-screen bg-zinc-800 flex flex-row justify-between shadow-lg px-4 py-2 sm:px-8 sm:py-4">
+    <header className="absolute top-0 left-0 right-0 z-10 w-screen bg-zinc-800 flex flex-row justify-between shadow-lg px-2 sm:px-4 py-1 sm:py-2">
       <Logo language={language} />
       <Menu
         language={language}
