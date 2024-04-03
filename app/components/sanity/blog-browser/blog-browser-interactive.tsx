@@ -36,7 +36,7 @@ export default function BlogBrowserInteractive({
   }, [page, perPage, language]);
 
   return (
-    <div className="flex flex-col justify-center items-center w-full gap-y-32">
+    <div className="not-prose flex flex-col justify-center items-center w-full gap-y-32">
       <h2 className="invisible none absolute" aria-label={title[language]}>
         {title[language]}
       </h2>
@@ -62,7 +62,7 @@ export default function BlogBrowserInteractive({
               size={25}
               aria-label="Loading Spinner"
               data-testid="loader"
-              className="my-auto border-2 border-red-500 align-middle"
+              className="my-auto align-middle"
             />
           ) : (
             "Get more..."

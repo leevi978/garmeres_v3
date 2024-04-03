@@ -18,4 +18,12 @@
   a {
     @apply underline;
   }
+  b,
+  strong {
+    @apply font-normal;
+  }
+  ul,
+  ol {
+    @apply list-outside;
+  }
 }
