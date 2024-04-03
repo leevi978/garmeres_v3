@@ -25,7 +25,7 @@ export default function BlogPostCard({
   return (
     <Link
       href={blogPostHref((slug as any).current, language)}
-      className="flex flex-col justify-start items-center w-full max-w-[340px] mx-auto gap-8 no-underline"
+      className="no-prose text-black flex flex-col justify-start items-center w-full max-w-[340px] mx-auto gap-6 no-underline"
     >
       <Image
         src={
@@ -40,9 +40,9 @@ export default function BlogPostCard({
         className="w-[340px] h-[340px] object-cover"
       />
       <div className="flex flex-col flex-grow gap-4">
-        <h3>{title}</h3>
-        <p>{getDateString(_createdAt)}</p>
-        <p>{portableTextSummary(body, 150)}</p>
+        <h3 className="!leading-7">{title}</h3>
+        <p className="!leading-7">{getDateString(_createdAt)}</p>
+        <p className="!leading-7">{portableTextSummary(body, 150)}</p>
       </div>
     </Link>
   );

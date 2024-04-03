@@ -1,12 +1,15 @@
 import type { Config } from "tailwindcss";
 
-const defaultStyle = {
-  fontSize: "fontSize",
-  fontWeight: "fontWeight",
+const defaultStyle = (theme: any) => {
+  return {
+    fontSize: "fontSize",
+    fontWeight: "fontWeight",
+    lineHeight: "lineHeight",
+    color: "color",
+  };
 };
 
 const config: Config = {
-  important: true,
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -18,16 +21,16 @@ const config: Config = {
       typography: (theme: any) => ({
         DEFAULT: {
           css: {
-            h1: defaultStyle,
-            h2: defaultStyle,
-            h3: defaultStyle,
-            h4: defaultStyle,
-            h5: defaultStyle,
-            h6: defaultStyle,
-            strong: defaultStyle,
-            b: defaultStyle,
-            a: defaultStyle,
-            p: defaultStyle,
+            h1: defaultStyle(theme),
+            h2: defaultStyle(theme),
+            h3: defaultStyle(theme),
+            h4: defaultStyle(theme),
+            h5: defaultStyle(theme),
+            h6: defaultStyle(theme),
+            strong: defaultStyle(theme),
+            b: defaultStyle(theme),
+            a: defaultStyle(theme),
+            p: defaultStyle(theme),
           },
         },
       }),

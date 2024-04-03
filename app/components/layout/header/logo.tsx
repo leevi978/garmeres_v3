@@ -6,7 +6,7 @@ export default function Logo({ language }: { language: Language }) {
   return (
     <Link
       href={`/${language}`}
-      className="flex flex-row gap-4 xl:gap-6 no-underline"
+      className="flex text-white flex-row gap-4 xl:gap-6 no-underline"
     >
       <Image
         className="rounded flex my-auto xl:w-[65px] w-[55px]"
@@ -15,7 +15,7 @@ export default function Logo({ language }: { language: Language }) {
         width={70}
         height={70}
       />
-      <span className="text-white my-auto text-2xl xl:text-3xl font-extralight">
+      <span className="my-auto text-2xl xl:text-3xl font-extralight">
         Garmeres
       </span>
     </Link>

@@ -4,26 +4,38 @@
 
 @layer base {
   * {
-    @apply text-base font-light;
+    @apply text-base font-light leading-8;
   }
   h1 {
-    @apply text-3xl;
+    @apply text-3xl font-normal;
   }
   h2 {
-    @apply text-2xl;
+    @apply text-2xl font-normal;
   }
   h3 {
-    @apply text-xl;
-  }
-  a {
-    @apply underline;
+    @apply text-xl font-normal;
   }
   b,
   strong {
-    @apply font-normal;
+    @apply font-semibold;
   }
   ul,
   ol {
     @apply list-outside;
+  }
+  a {
+    @apply underline text-cyan-800 font-normal;
+  }
+}
+
+@layer components {
+  .no-prose a {
+    @apply no-underline text-black;
+  }
+  footer a {
+    @apply text-cyan-200 underline;
+  }
+  footer * {
+    @apply text-center;
   }
 }

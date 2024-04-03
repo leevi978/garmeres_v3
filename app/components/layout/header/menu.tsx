@@ -45,11 +45,11 @@ export default function Menu({
       <li>
         <Link
           href={path}
-          className="flex h-full w-full flex-row gap-2 items-center no-underline"
+          className="text-black flex h-full w-full flex-row gap-2 items-center no-underline"
           onClick={() => setIsOpen(false)}
         >
           {props.languageIcon ? <MdLanguage size={25} /> : null}
-          <span className="mx-auto text-xl font-medium">{name}</span>
+          <span className="mx-auto text-xl font-normal">{name}</span>
         </Link>
       </li>
     );

@@ -6,7 +6,7 @@ import Social from "./social";
 export default async function Footer({ language }: { language: Language }) {
   const contact = await getContactInfo();
   return (
-    <footer className="flex flex-col justify-center items-center gap-4 bg-zinc-800 py-8 px-8 text-white z-10 [&>p]:text-center">
+    <footer className="flex flex-col justify-center items-center gap-4 bg-zinc-800 py-8 px-8 text-white z-10">
       <Social facebook={contact.facebook} instagram={contact.instagram} />
       <BackgroundAttribution language={language} />
       {(contact

@@ -7,6 +7,7 @@ import { client } from "@/sanity/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityReference } from "next-sanity";
 import { getDateString } from "@/utils/date-utils";
+import { Translated } from "@/types/language";
 
 const imgUrlBuilder = imageUrlBuilder(client);
 
@@ -16,9 +17,9 @@ function urlForImage(image: { _key: string; asset: SanityReference }) {
 
 function BlogPostThumbnail(props: PortableImage) {
   return (
-    <div className="not-prose items-center flex flex-col mx-auto mb-24 gap-4">
+    <div className="not-prose items-center flex flex-col mx-auto gap-4 mb-16">
       <Image
-        className="max-h-[512px] object-contain"
+        className="max-h-[420px] object-contain"
         src={urlForImage(props)
           .withOptions({ maxHeight: 512, maxWidth: 720, auto: "format" })
           .url()}
@@ -39,15 +40,28 @@ export default function Component({
 }: {
   document: BlogPostDocument;
 }) {
+  const dateString = getDateString(document?._createdAt);
   return (
     <PageTextContainer>
       <HeaderMargin />
       {document?.thumbnail ? (
         <BlogPostThumbnail {...document.thumbnail} />
       ) : null}
-      <h1>{document?.title}</h1>
-      <p>{getDateString(document?._createdAt)}</p>
+      <div>
+        <h1 className="!leading-3">{document?.title}</h1>
+        <p
+          aria-label={`${dateLabel[document.language || "en"]}: ${dateString}`}
+          className="text-base text-gray-500"
+        >
+          - {dateString}
+        </p>
+      </div>
       <PortableText value={document?.body} />
     </PageTextContainer>
   );
 }
+
+const dateLabel: Translated<string> = {
+  se: "Čállán",
+  en: "Published",
+};
