@@ -36,7 +36,10 @@ export default function BlogBrowserInteractive({
   }, [page, perPage, language]);
 
   return (
-    <div className="flex flex-col justify-center items-center w-full my-6 gap-y-32">
+    <div className="flex flex-col justify-center items-center w-full gap-y-32">
+      <h2 className="invisible none absolute" aria-label={title[language]}>
+        {title[language]}
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-32 w-full">
         {blogPosts.map((blogPost) => (
           <BlogPostCard

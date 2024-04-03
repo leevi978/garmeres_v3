@@ -28,7 +28,7 @@ function CallToAction({
 }) {
   return (
     <Link
-      className="xl:text-lg px-8 xl:px-8 py-3 xl:py-3 font-extralight rounded-full bg-slate-700 text-white hover:bg-slate-600"
+      className="xl:text-lg px-8 xl:px-8 py-3 xl:py-3 font-extralight rounded-full bg-slate-700 text-white hover:bg-slate-600 no-underline"
       href={resolveLink(link)}
     >
       {title}

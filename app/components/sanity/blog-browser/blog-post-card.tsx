@@ -25,7 +25,7 @@ export default function BlogPostCard({
   return (
     <Link
       href={blogPostHref((slug as any).current, language)}
-      className="flex flex-col justify-start items-center w-full max-w-[340px] mx-auto gap-8"
+      className="flex flex-col justify-start items-center w-full max-w-[340px] mx-auto gap-8 no-underline"
     >
       <Image
         src={

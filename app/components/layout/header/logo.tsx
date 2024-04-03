@@ -4,7 +4,10 @@ import Link from "next/link";
 
 export default function Logo({ language }: { language: Language }) {
   return (
-    <Link href={`/${language}`} className="flex flex-row gap-4 xl:gap-6">
+    <Link
+      href={`/${language}`}
+      className="flex flex-row gap-4 xl:gap-6 no-underline"
+    >
       <Image
         className="rounded flex my-auto xl:w-[65px] w-[55px]"
         src="/garmeres-logo-small.png"
