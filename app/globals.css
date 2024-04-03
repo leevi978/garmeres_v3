@@ -4,7 +4,7 @@
 
 @layer base {
   * {
-    @apply font-light;
+    @apply text-base font-light;
   }
   h1 {
     @apply text-3xl;
