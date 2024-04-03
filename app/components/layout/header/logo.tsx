@@ -4,15 +4,15 @@ import Link from "next/link";
 
 export default function Logo({ language }: { language: Language }) {
   return (
-    <Link href={`/${language}`} className="flex flex-row gap-3 sm:gap-4">
+    <Link href={`/${language}`} className="flex flex-row gap-4 lg:gap-6">
       <Image
-        className="rounded flex my-auto lg:w-[55px] w-[50px]"
+        className="rounded flex my-auto lg:w-[65px] w-[55px]"
         src="/garmeres-logo-small.png"
         alt=""
         width={70}
         height={70}
       />
-      <span className="text-white my-auto text-2xl font-extralight">
+      <span className="text-white my-auto text-2xl lg:text-3xl font-extralight">
         Garmeres
       </span>
     </Link>
