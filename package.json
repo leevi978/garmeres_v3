@@ -13,7 +13,7 @@
 		"@emotion/styled": "^11.11.0",
 		"@mui/icons-material": "^5.15.12",
 		"@mui/material": "^5.15.14",
-		"@portabletext/react": "^3.0.11",
+		"@portabletext/react": "^3.0.17",
 		"@sanity/client": "^6.15.7",
 		"@sanity/document-internationalization": "^2.1.0",
 		"@sanity/image-url": "^1.0.2",
