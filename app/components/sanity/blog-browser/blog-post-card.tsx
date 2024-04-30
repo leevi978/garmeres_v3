@@ -1,12 +1,10 @@
 import { Language } from "@/types/language";
 import { BlogPostDocument } from "@/types/sanity-types";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
-import imageUrlBuilder from "@sanity/image-url";
-import { PortableImageProps } from "../portable-image";
 import Link from "next/link";
 import { getDateString } from "@/utils/date-utils";
 import { portableTextSummary } from "@/utils/portable-text-utils";
+import { urlForImage } from "@/sanity/lib/image";
 
 export default function BlogPostCard({
   blogPost,
@@ -15,11 +13,6 @@ export default function BlogPostCard({
   blogPost: BlogPostDocument;
   language: Language;
 }) {
-  const imgUrlBuilder = imageUrlBuilder(client);
-
-  function urlForImage(image: PortableImageProps) {
-    return imgUrlBuilder.image(image);
-  }
   const { title, thumbnail, body, slug, _createdAt } = blogPost;
 
   return (

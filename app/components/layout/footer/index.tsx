@@ -1,10 +1,17 @@
 import { Language, Translated } from "@/types/language";
 import BackgroundAttribution from "./background-attribution";
-import { getContactInfo } from "@/services/sanity-service";
 import Social from "./social";
+import { ContactDocument } from "@/types/sanity-types";
+import { query } from "@/sanity/lib/query";
+import { sanityFetch } from "@/sanity/lib/fetch";
 
 export default async function Footer({ language }: { language: Language }) {
-  const contact = await getContactInfo();
+  const contact = await sanityFetch<ContactDocument>({
+    query: query({
+      schemaType: "contact",
+      firstOnly: true,
+    }),
+  });
   return (
     <footer className="flex flex-col justify-center items-center gap-4 bg-zinc-800 py-8 px-8 text-white z-10">
       <Social facebook={contact.facebook} instagram={contact.instagram} />

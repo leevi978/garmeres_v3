@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { siteUrl as asyncSiteUrl } from "@/services/seo-service";
 import { getAllDocuments, resolveLink } from "@/services/sanity-service";
-import { ResolvableType, Document, Slug } from "@/types/sanity-types";
+import { Document, Slug } from "@/types/sanity-types";
 
 const documents = getAllDocuments();
 
@@ -22,7 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       await documents
     ).map(async (document) => {
       const url = `${siteUrl}${resolveLink({
-        _type: document._type as ResolvableType,
+        _type: document._type,
         language: document.language,
         slug:
           typeof document.slug === "object"

@@ -1,29 +1,20 @@
-import { client } from "@/sanity/lib/client";
 import {
   documentsQuery,
   query,
   translationQuery,
   translationsQuery,
 } from "@/sanity/lib/query";
+import { client } from "@/sanity/lib/client";
 import { Language, toTranslated } from "@/types/language";
 import { Translated } from "@/types/language";
 import {
   BlogPostDocument,
-  ContactDocument,
   PageDocument,
   ResolvableLink,
   SiteMetadataDocument,
   TranslatedDocument,
   Document,
 } from "@/types/sanity-types";
-import imageUrlBuilder from "@sanity/image-url";
-import { SanityReference } from "next-sanity";
-
-const imgUrlBuilder = imageUrlBuilder(client);
-
-export function urlForImage(image: { _key: string; asset: SanityReference }) {
-  return imgUrlBuilder.image(image);
-}
 
 export function resolveLink(link: ResolvableLink) {
   const { language, slug, _type } = link;
@@ -56,25 +47,6 @@ export async function getMenuItems({ language }: { language: Language }) {
       }),
     };
   });
-}
-
-export async function getDocument({
-  schemaType,
-  slug,
-  language,
-}: {
-  schemaType: string;
-  slug: string;
-  language: Language;
-}): Promise<Document> {
-  return client.fetch<Document>(
-    query({
-      schemaType,
-      slug,
-      language,
-      firstOnly: true,
-    })
-  );
 }
 
 export async function getSiteMetadata({ language }: { language: Language }) {
@@ -141,32 +113,6 @@ export async function getBlogPosts(options?: BlogPostQueryOptions) {
       : blogPosts,
     hasMore,
   };
-}
-
-export function getPageBySlug({
-  slug,
-  language,
-}: {
-  slug: string;
-  language: Language;
-}) {
-  return client.fetch<PageDocument>(
-    query({
-      schemaType: "page",
-      firstOnly: true,
-      language,
-      slug,
-    })
-  );
-}
-
-export function getContactInfo() {
-  return client.fetch<ContactDocument>(
-    query({
-      schemaType: "contact",
-      firstOnly: true,
-    })
-  );
 }
 
 export function getTranslations<T extends PageDocument | BlogPostDocument>({

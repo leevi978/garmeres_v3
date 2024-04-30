@@ -4,7 +4,7 @@ import Featured from "@/app/components/featured";
 import { PageDocument } from "@/types/sanity-types";
 import { HeaderMargin } from "@/app/components/layout/header";
 import PageTextContainer from "@/app/components/layout/page-text-contianer";
-import { urlForImage } from "@/services/sanity-service";
+import { urlForImage } from "@/sanity/lib/image";
 
 export default function Component({ document }: { document: PageDocument }) {
   return (

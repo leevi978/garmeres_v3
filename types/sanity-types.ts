@@ -20,6 +20,7 @@ export type Document = SanityDocument & {
   slug: string | Slug;
   body: PortableTextBlock[];
   title: string;
+  _type: "page" | "blog-post";
 };
 
 export type TranslatedDocument<T extends Document> = T & {
@@ -34,6 +35,7 @@ export type PageDocument = Document & {
 
 export type BlogPostDocument = Document & {
   thumbnail: PortableImage;
+  _type: "blog-post";
 };
 
 export type ContactDocument = Document & {
@@ -57,8 +59,6 @@ export type PortableImage = {
   caption?: string;
 };
 
-export type ResolvableType = "page" | "blog-post";
-
 export type Slug = {
   current: string;
   _type: "slug";
@@ -67,7 +67,7 @@ export type Slug = {
 export type ResolvableLink = {
   language: Language;
   slug: Slug;
-  _type: ResolvableType;
+  _type: "page" | "blog-post";
 };
 
 export type MenuItem = {

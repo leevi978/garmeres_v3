@@ -17,9 +17,9 @@ import { Metadata } from "next";
 import {
   getAllSiteMetadata,
   getTranslatedDocument,
-  urlForImage,
 } from "@/services/sanity-service";
 import { AlternateURLs } from "next/dist/lib/metadata/types/alternative-urls-types";
+import { urlForImage } from "@/sanity/lib/image";
 
 type MetadataImage = {
   url: string | URL;
@@ -126,7 +126,7 @@ async function getSiteMetadata(language: Language): Promise<Metadata> {
 async function getCanonical(document: Document): Promise<string> {
   const tsmd = await translatedSiteMetadata;
   return `${tsmd[document.language].alternates?.canonical}${
-    document._type === "blog" ? "/blog" : ""
+    document._type === "blog-post" ? "/blog" : ""
   }/${
     typeof document.slug === "string"
       ? document.slug

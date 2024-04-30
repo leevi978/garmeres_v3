@@ -5,7 +5,7 @@ import { BlogPostDocument, PortableImage } from "@/types/sanity-types";
 import Image from "next/image";
 import { getDateString } from "@/utils/date-utils";
 import { Translated } from "@/types/language";
-import { urlForImage } from "@/services/sanity-service";
+import { urlForImage } from "@/sanity/lib/image";
 
 function BlogPostThumbnail(props: PortableImage) {
   return (
