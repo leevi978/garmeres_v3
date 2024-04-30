@@ -1,4 +1,5 @@
 import { Language } from "@/types/language";
+import { Slug } from "@/types/sanity-types";
 import { groq } from "next-sanity";
 
 export type QueryOptions = {
@@ -84,3 +85,37 @@ export const documentsQuery = groq`
 		...,
 	}
 `;
+
+export function pageQuery(slug: string | Slug, language: Language) {
+  return groq`
+	*[_type == "page" && slug.current == "${
+    typeof slug === "string" ? slug : slug.current
+  }" && language == "${language}"][0] {
+		...,
+    featured {
+      _type,
+      text,
+      title,
+      callToAction {
+        title,
+        link-> {
+          _id,
+          _type,
+          slug,
+          language
+        }
+      }
+    }
+	}
+`;
+}
+
+export function blogPostQuery(slug: string | Slug, language: Language): string {
+  return groq`
+	*[_type == "blog-post" && slug.current == "${
+    typeof slug === "string" ? slug : slug.current
+  }" && language == "${language}"][0] {
+		...,
+	}
+`;
+}

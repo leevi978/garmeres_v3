@@ -11,7 +11,7 @@ import {
 } from "react-icons/io5";
 import { getDurationString, getEventTimeString } from "@/utils/date-utils";
 
-export default function CalendarEvent(
+export default function CalendarEventItem(
   props: CalendarEvent & { language: Language }
 ) {
   return (

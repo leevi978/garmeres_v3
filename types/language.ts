@@ -41,7 +41,7 @@ export function toTranslated<T extends object>(
       return [
         language,
         {
-          language,
+          language: language,
           ...other,
         },
       ];

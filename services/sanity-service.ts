@@ -103,7 +103,9 @@ export async function getTranslatedDocument(
   const data = await client.fetch<TranslatedDocument<Document>>(
     translationQuery(_id)
   );
-  return toTranslated<Document>(data._translations);
+  return toTranslated<Document>(
+    data._translations.filter((item) => item != null)
+  );
 }
 
 type BlogPostQueryOptions = {
