@@ -7,6 +7,8 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import LiveQuery from "next-sanity/preview/live-query";
 import { draftMode } from "next/headers";
 import { BlogPostDocument } from "@/types/sanity-types";
+import { Metadata } from "next";
+import { createBlogPostMetadata } from "@/services/seo-service";
 
 const schemaType = "blog-post";
 
@@ -40,4 +42,24 @@ export default async function Page({
       <Component document={data} />
     </LiveQuery>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    language: Language;
+    slug: string;
+  };
+}): Promise<Metadata> {
+  const { slug, language } = params;
+  const document = await sanityFetch<BlogPostDocument>({
+    query: query({
+      schemaType,
+      slug,
+      language,
+      firstOnly: true,
+    }),
+  });
+  return createBlogPostMetadata(document);
 }

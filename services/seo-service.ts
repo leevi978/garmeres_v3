@@ -5,7 +5,12 @@ import {
   toTranslated,
   languages,
 } from "@/types/language";
-import { PageDocument, PortableImage, Slug } from "@/types/sanity-types";
+import {
+  BlogPostDocument,
+  PageDocument,
+  PortableImage,
+  Slug,
+} from "@/types/sanity-types";
 import { imageSearch, portableTextSummary } from "../utils/portable-text-utils";
 import { Document } from "@/types/sanity-types";
 import { Metadata } from "next";
@@ -213,8 +218,22 @@ export async function createPageMetadata(
   };
 }
 
-export async function createMetadataFromPage(
-  document: PageDocument
+export async function createBlogPostMetadata(
+  document: BlogPostDocument
 ): Promise<Metadata> {
-  return createDocumentMetadata(document);
+  const documentMetadata = await createDocumentMetadata(document);
+  let images: MetadataImage[] = document.thumbnail
+    ? [getOgImage(document.thumbnail)]
+    : (documentMetadata.openGraph?.images as MetadataImage[]) || [];
+  return {
+    ...documentMetadata,
+    openGraph: {
+      ...documentMetadata.openGraph,
+      images,
+    },
+    twitter: {
+      ...documentMetadata.twitter,
+      images,
+    },
+  };
 }
