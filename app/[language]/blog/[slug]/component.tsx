@@ -3,17 +3,9 @@ import PageTextContainer from "@/app/components/layout/page-text-contianer";
 import { HeaderMargin } from "@/app/components/layout/header";
 import { BlogPostDocument, PortableImage } from "@/types/sanity-types";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
-import imageUrlBuilder from "@sanity/image-url";
-import { SanityReference } from "next-sanity";
 import { getDateString } from "@/utils/date-utils";
 import { Translated } from "@/types/language";
-
-const imgUrlBuilder = imageUrlBuilder(client);
-
-function urlForImage(image: { _key: string; asset: SanityReference }) {
-  return imgUrlBuilder.image(image);
-}
+import { urlForImage } from "@/services/sanity-service";
 
 function BlogPostThumbnail(props: PortableImage) {
   return (

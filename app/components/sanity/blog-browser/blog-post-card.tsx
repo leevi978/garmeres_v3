@@ -4,9 +4,9 @@ import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { PortableImageProps } from "../portable-image";
-import { PortableTextBlock } from "sanity";
 import Link from "next/link";
 import { getDateString } from "@/utils/date-utils";
+import { portableTextSummary } from "@/utils/portable-text-utils";
 
 export default function BlogPostCard({
   blogPost,
@@ -46,25 +46,6 @@ export default function BlogPostCard({
       </div>
     </Link>
   );
-}
-
-function toPlainText(blocks: any[]): string {
-  return blocks
-    .map((block) => {
-      if (block._type !== "block" || !block.children) {
-        return "";
-      }
-      return block.children.map((child: any) => child.text).join("");
-    })
-    .join("\n\n");
-}
-
-function portableTextSummary(
-  portableText: PortableTextBlock[],
-  maxLength: number
-) {
-  let res = toPlainText(portableText);
-  return res.length > maxLength ? `${res.slice(0, maxLength - 3)}...` : res;
 }
 
 function blogPostHref(slug: string, language: Language) {

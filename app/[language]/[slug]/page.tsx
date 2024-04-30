@@ -7,6 +7,22 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import LiveQuery from "next-sanity/preview/live-query";
 import { draftMode } from "next/headers";
 import { PageDocument } from "@/types/sanity-types";
+import { Metadata } from "next";
+import { createMetadataFromPage } from "@/services/seo-service";
+import { getPageBySlug } from "@/services/sanity-service";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: {
+    language: Language;
+    slug: string;
+  };
+}): Promise<Metadata> {
+  const { slug, language } = params;
+  const document = await getPageBySlug({ slug, language });
+  return createMetadataFromPage(document);
+}
 
 const schemaType = "page";
 
