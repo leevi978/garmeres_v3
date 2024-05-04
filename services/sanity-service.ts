@@ -1,5 +1,6 @@
 import {
   documentsQuery,
+  menuItemsQuery,
   query,
   translationQuery,
   translationsQuery,
@@ -25,11 +26,7 @@ export function resolveLink(link: ResolvableLink) {
 
 export async function getMenuItems({ language }: { language: Language }) {
   const documents = await client.fetch<PageDocument[]>(
-    query({
-      schemaType: "page",
-      language,
-      sort: "menuIndex asc",
-    })
+    menuItemsQuery(language)
   );
   return documents.map((document) => {
     return {

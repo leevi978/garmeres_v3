@@ -61,6 +61,14 @@ export function translationQuery(_id: string) {
 `;
 }
 
+export function menuItemsQuery(language: Language) {
+  return groq`
+    *[_type == "page" && language == "${language}" && menuIndex >= 0] | order(menuIndex asc) {
+      ...,
+    }
+  `;
+}
+
 export function translationsQuery({
   schemaType,
   slug,
