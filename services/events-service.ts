@@ -1,4 +1,4 @@
-const url = "https://events.api.queerhangout.no";
+const url = "https://events.api.garmeres.com";
 
 export type CalendarEvent = {
   uid: string;
