@@ -44,7 +44,9 @@ export default function EventsBrowserInteractive({
           </div>
         )}
       </div>
-      <p>{`${translations["updated"][language]} ${getDatetimeString(
+      <p
+        suppressHydrationWarning={true}
+      >{`${translations["updated"][language]} ${getDatetimeString(
         currentCalendarPage["last-updated"]
       )}`}</p>
     </div>
