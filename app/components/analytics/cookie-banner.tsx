@@ -1,6 +1,7 @@
 "use client";
 
 import { Language, Translated } from "@/types/language";
+import { privacyPolicyFullSlug } from "@/utils/slugs";
 import Link from "next/link";
 import { Button, ButtonProps } from "react-aria-components";
 
@@ -32,7 +33,7 @@ export default function CookieBanner({
           {description[language]}
           <GaLink />
           {privacyText[language]}
-          <Link className={linkClass} href={privacyHref[language]}>
+          <Link className={linkClass} href={privacyPolicyFullSlug[language]}>
             {privacyLinkText[language]}.
           </Link>
         </p>
@@ -96,11 +97,6 @@ const privacyText: Translated<string> = {
 const privacyLinkText: Translated<string> = {
   se: "personsuodjalusnjuolggadusain",
   en: "privacy policy",
-};
-
-const privacyHref: Translated<string> = {
-  se: "/se/personsuodjalusnjuolggadusat",
-  en: "/en/privacy-policy",
 };
 
 const acceptText: Translated<string> = {

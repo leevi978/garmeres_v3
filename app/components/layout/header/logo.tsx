@@ -5,6 +5,7 @@ import Link from "next/link";
 export default function Logo({ language }: { language: Language }) {
   return (
     <Link
+      prefetch={false}
       href={`/${language}`}
       className="flex text-white flex-row gap-4 xl:gap-6 no-underline"
     >
