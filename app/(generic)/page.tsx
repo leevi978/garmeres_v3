@@ -1,5 +1,9 @@
-import { permanentRedirect } from 'next/navigation';
+import { permanentRedirect } from "next/navigation";
+import { homeFullSlug } from "@/utils/slugs";
+import { defaultLanguage } from "@/types/language";
 
-const redirectHome = () => permanentRedirect('/se/ruoktot');
+export const dynamic = "force-dynamic";
 
-export default redirectHome;
+export default function () {
+  permanentRedirect(homeFullSlug[defaultLanguage]);
+}

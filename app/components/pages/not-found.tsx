@@ -6,6 +6,7 @@ import PageTextContainer from "../layout/page-text-contianer";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
+import { homeFullSlug } from "@/utils/slugs";
 
 export default function NotFound({
   params,
@@ -24,7 +25,7 @@ export default function NotFound({
           </div>
           <p className="text-lg">{description[language]}</p>
           <Link
-            href={homeHref[language]}
+            href={homeFullSlug[language]}
             className="flex flex-row justify-center text-black no-underline hover:underline gap-1 mx-auto"
           >
             <ArrowBackIcon className="my-auto" />
@@ -58,9 +59,4 @@ const description: Translated<string> = {
 const homeButtonText: Translated<string> = {
   se: "Mana ruoktot",
   en: "Return home",
-};
-
-const homeHref: Translated<string> = {
-  se: "/se/ruoktot",
-  en: "/en/home",
 };

@@ -1,16 +1,13 @@
 import { MetadataRoute } from "next";
 import { siteUrl as asyncSiteUrl } from "@/services/seo-service";
 import { getAllDocuments, resolveLink } from "@/services/sanity-service";
-import { Document, Slug } from "@/types/sanity-types";
+import { Document } from "@/types/sanity-types";
+import { isHomeSlug } from "@/utils/slugs";
 
 const documents = getAllDocuments();
 
 function getPriority(document: Document) {
-  if (document._type === "page")
-    return (document.slug as Slug).current === "home" ||
-      (document.slug as Slug).current === "ruoktot"
-      ? 1.0
-      : 0.8;
+  if (document._type === "page") return isHomeSlug(document.slug) ? 1.0 : 0.8;
   else if (document._type === "blog-post") return 0.6;
   else return 0.1;
 }
@@ -18,9 +15,7 @@ function getPriority(document: Document) {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = await asyncSiteUrl;
   return await Promise.all(
-    (
-      await documents
-    ).map(async (document) => {
+    (await documents).map(async (document) => {
       const url = `${siteUrl}${resolveLink({
         _type: document._type,
         language: document.language,
