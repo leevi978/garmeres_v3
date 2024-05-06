@@ -40,7 +40,7 @@ export default function Component({
         <BlogPostThumbnail {...document.thumbnail} />
       ) : null}
       <div>
-        <h1 className="!leading-3">{document?.title}</h1>
+        <h1>{document?.title}</h1>
         <p
           aria-label={`${dateLabel[document.language || "en"]}: ${dateString}`}
           className="text-base text-gray-500"
