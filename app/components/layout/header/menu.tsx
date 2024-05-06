@@ -20,7 +20,7 @@ export default function Menu({
   language: Language;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [translationPath, setTranslationPath] = useState("en");
+  const [translationPath, setTranslationPath] = useState("/en");
   const [translationLabel, setTranslationLabel] = useState("English");
   const pathname = usePathname();
 
@@ -44,6 +44,7 @@ export default function Menu({
     return (
       <li>
         <Link
+          prefetch={false}
           href={path}
           className="text-black flex h-full w-full flex-row gap-2 items-center no-underline"
           onClick={() => setIsOpen(false)}
