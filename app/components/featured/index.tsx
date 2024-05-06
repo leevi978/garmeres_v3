@@ -9,9 +9,9 @@ export default function FeaturedComponent(props: Featured) {
     <div className="not-prose flex flex-col justify-between min-h-screen h-auto w-screen box-content">
       <HeaderMargin />
       <div className=" bg-slate-100 border-2 bg-opacity-95 my-auto w-screen py-16 px-4 shadow-lg">
-        <div className="flex flex-col justify-between items-center gap-8 xl:gap-12 w-full max-w-[1024px] mx-auto text-center">
-          <h1 className="text-4xl xl:text-5xl font-light">{title}</h1>
-          <p className="xl:text-lg !leading-9">{text}</p>
+        <div className="flex flex-col justify-between items-center gap-8 xl:gap-16 w-full max-w-[1024px] mx-auto text-center">
+          <h1 className="text-4xl font-light">{title}</h1>
+          <p className="!leading-9">{text}</p>
           <CallToAction {...callToAction} />
         </div>
       </div>
@@ -28,7 +28,7 @@ function CallToAction({
 }) {
   return (
     <Link
-      className="xl:text-lg px-8 xl:px-8 py-3 xl:py-3 font-extralight rounded-full bg-slate-700 text-white hover:bg-slate-600 no-underline"
+      className="px-8 py-3 font-extralight rounded-full bg-slate-700 text-white hover:bg-slate-600 no-underline"
       href={resolveLink(link)}
     >
       {title}

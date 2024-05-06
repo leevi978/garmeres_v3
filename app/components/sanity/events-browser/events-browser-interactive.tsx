@@ -22,7 +22,7 @@ export default function EventsBrowserInteractive({
   let i = 0;
 
   return (
-    <div className="not-prose flex flex-col justify-center items-center mx-auto gap-4 my-8 w-full max-w-[640px]">
+    <div className="not-prose flex flex-col justify-center items-center mx-auto gap-8 mt-0 mb-16 w-full max-w-[640px]">
       <h2>{translations["title"][language]}</h2>
 
       <div className="border-2 w-full">
