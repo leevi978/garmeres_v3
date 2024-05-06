@@ -12,7 +12,7 @@ export default function MenuButton(
       {...props}
       className={`${
         props.isOpen ? "text-black" : "text-white"
-      } my-4 focus:outline-white focus:outline-double`}
+      } my-4 focus:outline-none`}
     >
       {props.isOpen ? (
         <MdOutlineClose size={35} />

@@ -60,7 +60,7 @@ export default function Menu({
       <Fade in={isOpen}>
         <div
           onClick={handleChange}
-          className="fixed top-0 bottom-0 left-0 right-0 min-w-screen w-screen h-screen min-h-screen bg-black/[0.4]"
+          className="fixed top-0 bottom-0 left-0 right-0 min-w-screen w-screen h-screen min-h-screen bg-black/[0.4] -z-10"
         />
       </Fade>
       <MenuButton onPress={handleChange} isOpen={isOpen} />

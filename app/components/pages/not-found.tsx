@@ -7,13 +7,6 @@ import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 
-function getLocalLanguage(): Language {
-  const langArr = window.location.pathname.split("/").filter((e) => e !== "");
-  if (langArr.length === 0 || !languages.includes(langArr[0] as Language))
-    return "se";
-  return langArr[0] as Language;
-}
-
 export default function NotFound({
   params,
 }: {
@@ -43,6 +36,13 @@ export default function NotFound({
       </PageTextContainer>
     </div>
   );
+}
+
+function getLocalLanguage(): Language {
+  const langArr = window.location.pathname.split("/").filter((e) => e !== "");
+  if (langArr.length === 0 || !languages.includes(langArr[0] as Language))
+    return "se";
+  return langArr[0] as Language;
 }
 
 const title: Translated<string> = {
