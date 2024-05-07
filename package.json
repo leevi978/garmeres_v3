@@ -16,7 +16,7 @@
     "@mui/material": "^5.15.14",
     "@next/third-parties": "^14.2.3",
     "@portabletext/react": "^3.0.11",
-    "@sanity/client": "^6.15.7",
+    "@sanity/client": "^6.17.2",
     "@sanity/document-internationalization": "3.0.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/preview-kit": "^5.0.31",
