@@ -1,5 +1,5 @@
 "use client";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { useEffect, useState } from "react";
 import { Language } from "@/types/language";
 import CookieBanner from "./cookie-banner";
@@ -32,7 +32,7 @@ export default function AnalyticsInteractive(props: AnalyticsProps) {
   }
 
   return consent === true ? (
-    <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GTAG || ""} />
+    <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || ""} />
   ) : consent === false ? null : (
     <CookieBanner language={props.language} onResponse={onResponse} />
   );
