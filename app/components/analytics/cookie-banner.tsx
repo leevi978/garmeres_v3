@@ -8,15 +8,13 @@ import { Button, ButtonProps } from "react-aria-components";
 const linkClass =
   "text-sm text-blue-300 font-light no-underline hover:underline";
 
-export default function CookieBanner({
-  onAccept,
-  onReject,
-  language,
-}: {
-  onAccept: () => void;
-  onReject: () => void;
+type CookieBannerProps = {
   language: Language;
-}) {
+  onResponse: (e: boolean) => void;
+};
+
+export default function CookieBanner(props: CookieBannerProps) {
+  const { language, onResponse } = props;
   return (
     <section
       className="px-4 sm:px-8 py-8 sm:py-12 gap-8 fixed flex flex-col w-screen bottom-0 left-0 right-0 bg-zinc-800 text-white z-50"
@@ -40,16 +38,16 @@ export default function CookieBanner({
       </div>
       <div className="flex flex-col sm:flex-row gap-8">
         <CookieButton
+          onPress={() => onResponse(true)}
           aria-label={acceptText[language]}
           isAccept={true}
-          onPress={onAccept}
         >
           {acceptText[language]}
         </CookieButton>
         <CookieButton
+          onPress={() => onResponse(false)}
           aria-label={rejectText[language]}
           isAccept={false}
-          onPress={onReject}
         >
           {rejectText[language]}
         </CookieButton>

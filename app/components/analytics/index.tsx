@@ -1,56 +1,28 @@
-"use client";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import { useEffect, useState } from "react";
 import { Language } from "@/types/language";
-import CookieBanner from "./cookie-banner";
-import {
-  getCookies,
-  setCookie,
-  deleteCookie,
-  getCookie,
-  hasCookie,
-} from "cookies-next";
+import { cookies } from "next/headers";
+import AnalyticsInteractive from "./analytics-interactive";
 
 const consentCookieName = "_ga_consent";
 
-export default function Analytics({ language }: { language: Language }) {
-  const [consent, setConsent] = useState<boolean>(
-    getCookie(consentCookieName) === "true"
-  );
-  const [responded, setResponded] = useState(hasCookie(consentCookieName));
-  const [loading, setLoading] = useState<boolean>(!responded);
+export default async function Analytics({ language }: { language: Language }) {
+  const cookieStore = cookies();
+  const cookieValue = cookieStore.get(consentCookieName)?.value;
+  const consent = cookieValue ? cookieValue === "true" : undefined;
 
-  useEffect(() => {
-    if (loading) {
-      const cookieConsent = getCookie(consentCookieName);
-      setResponded(cookieConsent != null);
-      setConsent(cookieConsent === "true");
-      setLoading(false);
-    }
-  }, [loading]);
-
-  useEffect(() => {
-    if (responded && !consent) {
-      Object.keys(getCookies())
-        .filter((c) => c.startsWith("_ga") && c !== consentCookieName)
-        .forEach((c) => deleteCookie(c));
-    }
-  }, [responded, consent]);
-
-  function respond(isAccepted: boolean) {
-    setCookie(consentCookieName, isAccepted ? "true" : "false", {
-      maxAge: isAccepted ? 28 * 24 * 60 * 60 : undefined, // 28 days, in seconds
-    });
-    setLoading(true);
+  if (consent !== true) {
+    // Delete all GA cookies
+    cookieStore
+      .getAll()
+      .map((c) => c.name)
+      .filter((c) => c.startsWith("_ga") && c !== consentCookieName)
+      .forEach((c) => cookieStore.delete(c));
   }
 
-  return loading ? null : !responded ? (
-    <CookieBanner
+  return (
+    <AnalyticsInteractive
+      consentCookieName={consentCookieName}
       language={language}
-      onAccept={() => respond(true)}
-      onReject={() => respond(false)}
+      initialConsent={consent}
     />
-  ) : consent ? (
-    <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GTAG || ""} />
-  ) : null;
+  );
 }
