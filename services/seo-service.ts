@@ -159,7 +159,7 @@ async function createDocumentMetadata(document: Document): Promise<Metadata> {
 
   const documentDescription = portableTextSummary(document.body, 200);
   const description =
-    documentDescription.length > 0
+    documentDescription.replace(/\s/g, "").length > 0
       ? documentDescription
       : siteMetadata.description || "";
 
