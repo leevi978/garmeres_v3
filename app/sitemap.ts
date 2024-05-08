@@ -2,12 +2,17 @@ import { MetadataRoute } from "next";
 import { siteUrl as asyncSiteUrl } from "@/services/seo-service";
 import { getAllDocuments, resolveLink } from "@/services/sanity-service";
 import { Document } from "@/types/sanity-types";
-import { isHomeSlug } from "@/utils/slugs";
+import { isHomeSlug, isPrivacyPolicySlug } from "@/utils/slugs";
 
 const documents = getAllDocuments();
 
 function getPriority(document: Document) {
-  if (document._type === "page") return isHomeSlug(document.slug) ? 1.0 : 0.8;
+  if (document._type === "page")
+    return isHomeSlug(document.slug)
+      ? 1.0
+      : isPrivacyPolicySlug(document.slug)
+        ? 0.2
+        : 0.8;
   else if (document._type === "blog-post") return 0.6;
   else return 0.1;
 }
