@@ -10,6 +10,7 @@ export default function MenuButton(
   return (
     <Button
       {...props}
+      aria-label={props.isOpen ? "Close menu" : "Open menu"}
       className={`${
         props.isOpen ? "text-black" : "text-white"
       } my-4 focus:outline-none`}
