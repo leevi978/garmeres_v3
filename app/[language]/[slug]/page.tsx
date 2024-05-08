@@ -9,6 +9,7 @@ import { draftMode } from "next/headers";
 import { PageDocument } from "@/types/sanity-types";
 import { Metadata } from "next";
 import { createPageMetadata } from "@/services/seo-service";
+import { notFound } from "next/navigation";
 
 export const generateStaticParams = () => generateStaticSlugParams("page");
 
@@ -18,11 +19,12 @@ export default async function Page({
   params,
 }: {
   params: {
-    language: Language;
+    language?: Language;
     slug: string;
   };
 }) {
   const { slug, language } = params;
+  if (!language) notFound();
   const data = await sanityFetch<PageDocument>({
     query: pageQuery(slug, language),
   });
@@ -42,11 +44,12 @@ export async function generateMetadata({
   params,
 }: {
   params: {
-    language: Language;
+    language?: Language;
     slug: string;
   };
 }): Promise<Metadata> {
   const { slug, language } = params;
+  if (!language) notFound();
   const document = await sanityFetch<PageDocument>({
     query: pageQuery(slug, language),
   });

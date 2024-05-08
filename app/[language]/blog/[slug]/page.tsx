@@ -9,6 +9,7 @@ import { draftMode } from "next/headers";
 import { BlogPostDocument } from "@/types/sanity-types";
 import { Metadata } from "next";
 import { createBlogPostMetadata } from "@/services/seo-service";
+import { notFound } from "next/navigation";
 
 export const generateStaticParams = () => generateStaticSlugParams("blog-post");
 
@@ -18,11 +19,12 @@ export default async function Page({
   params,
 }: {
   params: {
-    language: Language;
+    language?: Language;
     slug: string;
   };
 }) {
   const { slug, language } = params;
+  if (!language) notFound();
   const data = await sanityFetch<BlogPostDocument>({
     query: blogPostQuery(slug, language),
   });
@@ -47,6 +49,7 @@ export async function generateMetadata({
   };
 }): Promise<Metadata> {
   const { slug, language } = params;
+  if (!language) notFound();
   const document = await sanityFetch<BlogPostDocument>({
     query: blogPostQuery(slug, language),
   });
