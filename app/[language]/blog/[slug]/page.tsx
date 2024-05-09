@@ -1,5 +1,5 @@
 import { generateStaticSlugParams } from "@/app/navigation/slug";
-import { Language } from "@/types/language";
+import { Language, forceLanguage } from "@/types/language";
 import Component from "./component";
 import Preview from "./preview";
 import { blogPostQuery } from "@/sanity/lib/query";
@@ -23,11 +23,12 @@ export default async function Page({
     slug: string;
   };
 }) {
-  const { slug, language } = params;
-  if (!language) notFound();
+  const language = forceLanguage(params.language);
+  const slug = params.slug;
   const data = await sanityFetch<BlogPostDocument>({
     query: blogPostQuery(slug, language),
   });
+  if (!data) notFound();
   return (
     <LiveQuery
       enabled={draftMode().isEnabled}
@@ -48,10 +49,11 @@ export async function generateMetadata({
     slug: string;
   };
 }): Promise<Metadata> {
-  const { slug, language } = params;
-  if (!language) notFound();
+  const language = forceLanguage(params.language);
+  const slug = params.slug;
   const document = await sanityFetch<BlogPostDocument>({
     query: blogPostQuery(slug, language),
   });
+  if (!document) notFound();
   return createBlogPostMetadata(document);
 }

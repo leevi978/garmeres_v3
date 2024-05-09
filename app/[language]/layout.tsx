@@ -1,4 +1,4 @@
-import { Language, defaultLanguage, languages } from "@/types/language";
+import { Language, forceLanguage } from "@/types/language";
 import { ReactNode } from "react";
 import RootLayout from "@/app/components/layout/root-layout";
 import { generateStaticLanguageParams } from "../navigation/language";
@@ -10,17 +10,20 @@ export const dynamicParams = true;
 
 export default async function Layout({
   children,
-  params: { language },
+  params,
 }: {
   children: ReactNode;
-  params: { language: Language };
+  params?: { language?: Language };
 }) {
-  const menuItems = await getMenuItems({ language });
+  const language = forceLanguage(params?.language);
+  const menuItems = await getMenuItems({
+    language: language,
+  });
   return (
     <RootLayout
       menuItems={menuItems}
       params={{
-        language: languages.includes(language) ? language : defaultLanguage,
+        language,
       }}
     >
       {children}

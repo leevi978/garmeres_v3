@@ -7,7 +7,7 @@ export const languageNames: Translated<string> = {
   se: "Davvisámegiella",
 };
 
-export const defaultLanguage: Language = "en";
+export const defaultLanguage: Language = "se";
 
 export type Translated<T> = {
   [LANGUAGE in Language]: T;
@@ -47,4 +47,9 @@ export function toTranslated<T extends object>(
       ];
     })
   ) as Translated<T>;
+}
+
+export function forceLanguage(language?: string): Language {
+  if (!language) return defaultLanguage;
+  return languages.find((lang) => lang === language) || defaultLanguage;
 }
