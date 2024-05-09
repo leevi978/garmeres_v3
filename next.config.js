@@ -17,6 +17,21 @@ const nextConfig = {
         destination: "/se/ruoktot",
         permanent: true,
       },
+      {
+        source: "/no/hjem",
+        destination: "/en/home",
+        permanent: true,
+      },
+      {
+        source: "/sme/ruoktot",
+        destination: "/se/ruoktot",
+        permanent: true,
+      },
+      {
+        source: "/home",
+        destination: "/en/home",
+        permanent: true,
+      },
     ];
   },
 };
