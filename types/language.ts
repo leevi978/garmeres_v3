@@ -53,3 +53,9 @@ export function forceLanguage(language?: string): Language {
   if (!language) return defaultLanguage;
   return languages.find((lang) => lang === language) || defaultLanguage;
 }
+
+export function isLanguage(language?: string): boolean {
+  return (
+    language != null && languages.find((lang) => lang === language) != null
+  );
+}

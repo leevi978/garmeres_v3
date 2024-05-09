@@ -1,9 +1,5 @@
-import { permanentRedirect } from "next/navigation";
-import { homeFullSlug } from "@/utils/slugs";
-import { defaultLanguage } from "@/types/language";
+import { notFound } from "next/navigation";
 
-export const dynamic = "force-dynamic";
+const notFoundCatchAll = () => notFound();
 
-export default function () {
-  permanentRedirect(homeFullSlug[defaultLanguage]);
-}
+export default notFoundCatchAll;
