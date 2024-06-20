@@ -24,7 +24,9 @@ export type CalendarPage = {
 };
 
 export async function getCalendarPage(page?: number) {
-  const res = await fetch(`${url}${page ? `/pages/${page}.json` : ""}`);
+  const res = await fetch(`${url}${page ? `/pages/${page}.json` : ""}`, {
+    cache: "no-store",
+  });
   const body = await res.json();
   const calendarPage: CalendarPage = body;
   return calendarPage;
