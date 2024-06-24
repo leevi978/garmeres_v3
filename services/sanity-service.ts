@@ -15,7 +15,10 @@ import {
   SiteMetadataDocument,
   TranslatedDocument,
   Document,
+  SanityTag,
 } from "@/types/sanity-types";
+
+const tag: SanityTag = "*";
 
 export function resolveLink(link: ResolvableLink) {
   const { language, slug, _type } = link;
@@ -26,7 +29,14 @@ export function resolveLink(link: ResolvableLink) {
 
 export async function getMenuItems({ language }: { language: Language }) {
   const documents = await client.fetch<PageDocument[]>(
-    menuItemsQuery(language)
+    menuItemsQuery(language),
+    {},
+    {
+      next: {
+        revalidate: 3600,
+        tags: [tag],
+      },
+    }
   );
   return documents.map((document) => {
     return {
@@ -52,7 +62,14 @@ export async function getSiteMetadata({ language }: { language: Language }) {
       schemaType: "seo",
       language,
       firstOnly: true,
-    })
+    }),
+    {},
+    {
+      next: {
+        tags: [tag],
+        revalidate: 3600,
+      },
+    }
   );
 }
 export async function getAllSiteMetadata() {
@@ -62,7 +79,14 @@ export async function getAllSiteMetadata() {
       fields: `
         "imageUrl": siteThumbnail.asset->url
       `,
-    })
+    }),
+    {},
+    {
+      next: {
+        tags: [tag],
+        revalidate: 3600,
+      },
+    }
   );
 }
 
@@ -70,7 +94,14 @@ export async function getTranslatedDocument(
   _id: string
 ): Promise<Translated<Document>> {
   const data = await client.fetch<TranslatedDocument<Document>>(
-    translationQuery(_id)
+    translationQuery(_id),
+    {},
+    {
+      next: {
+        tags: [tag],
+        revalidate: 3600,
+      },
+    }
   );
   return toTranslated<Document>(
     data._translations.filter((item) => item != null)
@@ -97,7 +128,14 @@ export async function getBlogPosts(options?: BlogPostQueryOptions) {
       schemaType: "blog-post",
       language: options?.language,
       sort: "_createdAt desc",
-    })
+    }),
+    {},
+    {
+      next: {
+        tags: [tag],
+        revalidate: 3600,
+      },
+    }
   );
   let hasMore = false;
   if (options?.perPage) {
@@ -126,10 +164,26 @@ export function getTranslations<T extends PageDocument | BlogPostDocument>({
       schemaType,
       slug,
       language,
-    })
+    }),
+    {},
+    {
+      next: {
+        tags: [tag],
+        revalidate: 3600,
+      },
+    }
   );
 }
 
 export function getAllDocuments(): Promise<Document[]> {
-  return client.fetch<Document[]>(documentsQuery);
+  return client.fetch<Document[]>(
+    documentsQuery,
+    {},
+    {
+      next: {
+        tags: [tag],
+        revalidate: 3600,
+      },
+    }
+  );
 }

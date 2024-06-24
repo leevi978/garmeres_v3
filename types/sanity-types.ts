@@ -3,6 +3,8 @@ import { Language } from "./language";
 import { PortableTextBlock } from "sanity";
 import { SanityReference } from "next-sanity";
 
+export type SanityTag = "*";
+
 export type SiteMetadataDocument = SanityDocument & {
   siteTitle: string;
   siteUrl: string;
