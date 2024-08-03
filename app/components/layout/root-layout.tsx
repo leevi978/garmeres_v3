@@ -5,11 +5,11 @@ import "@/app/globals.css";
 import Header from "./header";
 import Footer from "./footer";
 import { MenuItem } from "@/types/sanity-types";
-import { Inter as CustomFont } from "next/font/google";
+import { Open_Sans as CustomFont } from "next/font/google";
 import Analytics from "../analytics";
 
 const customFont = CustomFont({
-  weight: ["100", "200", "300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
   subsets: ["latin"],
   display: "swap",
 });
