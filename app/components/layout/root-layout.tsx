@@ -5,7 +5,7 @@ import "@/app/globals.css";
 import Header from "./header";
 import Footer from "./footer";
 import { MenuItem } from "@/types/sanity-types";
-import { Roboto as CustomFont } from "next/font/google";
+import { Albert_Sans as CustomFont } from "next/font/google";
 import Analytics from "../analytics";
 
 const customFont = CustomFont({
