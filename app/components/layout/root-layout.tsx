@@ -5,11 +5,11 @@ import "@/app/globals.css";
 import Header from "./header";
 import Footer from "./footer";
 import { MenuItem } from "@/types/sanity-types";
-import { Lexend as CustomFont } from "next/font/google";
+import { Albert_Sans as CustomFont } from "next/font/google";
 import Analytics from "../analytics";
 
 const customFont = CustomFont({
-  weight: ["100", "200", "300", "400", "500", "600"],
+  weight: ["100", "300", "400", "500"],
   subsets: ["latin"],
   display: "swap",
 });
