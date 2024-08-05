@@ -21,7 +21,7 @@
     "@sanity/image-url": "^1.0.2",
     "@sanity/preview-kit": "^5.1.0",
     "@sanity/ui": "2.1.4",
-    "@sanity/vision": "^3.48.0",
+    "@sanity/vision": "^3.52.4",
     "cookies-next": "^4.2.1",
     "dotenv": "^16.4.5",
     "next": "^14.2.4",
