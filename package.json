@@ -20,7 +20,7 @@
     "@sanity/document-internationalization": "3.0.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/preview-kit": "^5.1.0",
-    "@sanity/ui": "2.1.4",
+    "@sanity/ui": "2.8.8",
     "@sanity/vision": "^3.48.0",
     "cookies-next": "^4.2.1",
     "dotenv": "^16.4.5",
